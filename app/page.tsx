@@ -19,8 +19,6 @@ import {
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { apartments } from "./apartments";
 
-const conciergeWhatsApp = "5491132700931";
-
 const transfers = [
   { id: "ezeiza", price: 50, keyPrice: 55, icon: Plane },
   { id: "aeroparque", price: 25, keyPrice: 30, icon: Plane },
@@ -564,25 +562,54 @@ export default function Home() {
   function submitRequest(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
+    const arrival = String(form.get("arrival") ?? "");
+    const travel = String(form.get("flight") ?? "");
+    const carrier = String(form.get("airline") ?? "");
+    const whatsapp = String(form.get("whatsapp") ?? "");
+    const apartment = String(form.get("apartment") ?? "");
+    const origin = `${transferText.name} - ${transferText.detail}`;
+    const requestData = {
+      origin,
+      arrival,
+      travel,
+      carrier,
+      passengers,
+      bags,
+      whatsapp,
+      apartment,
+      keyDelivery,
+      total,
+    };
+
     const message = [
       t.message.greeting,
       "",
-      `${t.message.origin}: ${transferText.name} - ${transferText.detail}`,
-      `${t.message.arrival}: ${form.get("arrival")}`,
-      `${t.message.travel}: ${form.get("flight")}`,
-      `${t.message.carrier}: ${form.get("airline")}`,
+      `${t.message.origin}: ${origin}`,
+      `${t.message.arrival}: ${arrival}`,
+      `${t.message.travel}: ${travel}`,
+      `${t.message.carrier}: ${carrier}`,
       `${t.message.passengers}: ${passengers}`,
       `${t.message.bags}: ${bags}`,
-      `${t.message.whatsapp}: ${form.get("whatsapp")}`,
-      `${t.message.apartment}: ${form.get("apartment")}`,
+      `${t.message.whatsapp}: ${whatsapp}`,
+      `${t.message.apartment}: ${apartment}`,
       `${t.message.keys}: ${keyDelivery ? t.yes : t.no}`,
       `${t.total}: USD ${total}`,
       "",
       t.message.closing,
     ].join("\n");
 
+    const bookingPayload = new Blob([JSON.stringify(requestData)], { type: "application/json" });
+    if (!navigator.sendBeacon("/api/requests", bookingPayload)) {
+      void fetch("/api/requests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestData),
+        keepalive: true,
+      }).catch(() => undefined);
+    }
+
     window.open(
-      `https://wa.me/${conciergeWhatsApp}?text=${encodeURIComponent(message)}`,
+      `https://wa.me/5491132700931?text=${encodeURIComponent(message)}`,
       "_blank",
       "noopener,noreferrer",
     );
@@ -734,3 +761,4 @@ export default function Home() {
     </main>
   );
 }
+
