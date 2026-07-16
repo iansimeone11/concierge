@@ -22,7 +22,7 @@
 
 * { box-sizing: border-box; letter-spacing: 0; }
 html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-display), "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", Georgia, serif; font-size: 18px; letter-spacing: 0; }
+body { margin: 0; overflow-x: hidden; background: var(--paper); color: var(--ink); font-family: var(--font-display), "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif JP", Georgia, serif; font-size: 18px; letter-spacing: 0; }
 button, input, select { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 a { color: inherit; text-decoration: none; }
@@ -114,7 +114,18 @@ legend span { display: inline-grid; place-items: center; width: 30px; height: 30
 .summary-total strong { font-family: inherit; font-size: 36px; font-weight: 500; }
 .whatsapp-button { width: 100%; min-height: 52px; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 0 18px; border: 0; border-radius: 4px; background: var(--sage-soft); color: var(--ink); cursor: pointer; font-size: 17px; font-weight: 600; }
 .whatsapp-button:hover { background: white; }
+.whatsapp-button:disabled { opacity: .62; cursor: wait; }
+.payment-error { margin: 12px 0 0; color: #ffd2cc; font-size: 14px; text-align: center; }
 .summary-note { margin: 12px 0 0; color: #96a39c; font-size: 12px; text-align: center; }
+
+.payment-result { min-height: 100svh; display: grid; place-items: center; padding: 32px 20px; background: var(--paper); }
+.payment-panel { width: min(620px, 100%); display: flex; flex-direction: column; align-items: center; text-align: center; }
+.payment-panel > img { margin-bottom: 34px; border-radius: 3px; }
+.payment-panel .eyebrow { margin-bottom: 14px; }
+.payment-panel h1 { max-width: 600px; font-size: clamp(46px, 7vw, 78px); line-height: .94; }
+.payment-panel > p:not(.eyebrow) { max-width: 520px; margin: 24px 0 32px; color: var(--muted); line-height: 1.65; }
+.payment-check { width: 58px; height: 58px; display: grid; place-items: center; margin-bottom: 24px; color: white; background: var(--ink); border-radius: 50%; }
+.whatsapp-success { background: #1f6b4f; border-color: #1f6b4f; }
 
 .service-story { min-height: 680px; display: grid; grid-template-columns: 1fr 1fr; background: var(--white); }
 .story-image { position: relative; min-height: 560px; }
@@ -158,6 +169,7 @@ footer { background: #111916; color: white; }
 }
 
 @media (max-width: 700px) {
+  html { scroll-padding-top: 18px; }
   .shell { width: min(100% - 28px, 1180px); }
   .site-header { min-height: 86px; }
   .brand { width: 70px; height: 70px; }
@@ -166,25 +178,43 @@ footer { background: #111916; color: white; }
   .language-picker { height: 42px; padding-left: 10px; }
   .language-picker select { width: 54px; font-size: 15px; }
   .header-action { width: 42px; height: 42px; justify-content: center; border: 1px solid rgba(23,32,29,.25); border-radius: 50%; font-size: 0; }
-  .hero { min-height: 700px; }
+  .hero { min-height: min(700px, 92svh); }
   .hero-image { object-position: 69% center; }
   .hero-shade { background: linear-gradient(90deg, rgba(244,246,240,.94) 0%, rgba(244,246,240,.7) 52%, rgba(16,24,22,.18) 100%); }
   .hero-content { justify-content: flex-end; padding: 60px 0 44px; }
-  h1 { font-size: clamp(48px, 16vw, 72px); max-width: 360px; }
+  h1 { max-width: 360px; font-size: 62px; }
   .hero-copy { max-width: 330px; margin: 22px 0 28px; font-size: 15px; line-height: 1.55; }
   .hero-note { min-height: 66px; font-size: 14px; line-height: 1.5; }
-  .booking-section { padding: 74px 0 82px; }
-  .booking-heading { grid-template-columns: 1fr; gap: 24px; margin-bottom: 38px; }
+  .booking-section { padding: 58px 0 max(76px, env(safe-area-inset-bottom)); }
+  .booking-heading { grid-template-columns: 1fr; gap: 18px; margin-bottom: 32px; }
+  .booking-heading h2, .story-copy h2, .rates-layout h2, .ferry-content h2 { font-size: 46px; }
   .booking-heading > p { font-size: 16px; }
+  .booking-layout { gap: 34px; }
+  .booking-main { gap: 34px; }
+  legend { margin-bottom: 16px; font-size: 18px; }
   .transfer-options { grid-template-columns: 1fr; }
-  .transfer-option { min-height: 112px; display: grid; grid-template-columns: 40px 1fr auto; align-items: center; column-gap: 12px; }
+  .transfer-option { min-height: 104px; display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; align-items: center; column-gap: 12px; padding: 14px; }
   .option-icon { margin: 0; }
-  .option-price { margin: 0; padding: 0; align-self: end; }
-  .option-check { top: 12px; right: 12px; }
-  .form-grid { grid-template-columns: 1fr; }
+  .option-content { min-width: 0; padding-right: 0; }
+  .option-content strong { font-size: 17px; }
+  .option-price { min-width: 58px; margin: 0; padding: 0 22px 0 4px; align-self: center; text-align: right; }
+  .option-check { top: 10px; right: 10px; }
+  .form-grid { grid-template-columns: 1fr; gap: 16px; }
   .form-grid .full-width { grid-column: auto; }
+  .form-grid input, .form-grid select { height: 56px; padding-inline: 14px; font-size: 16px; }
   .quantities { grid-template-columns: 1fr; }
-  .booking-summary { padding: 24px; }
+  .quantity-control { min-height: 72px; }
+  .stepper { grid-template-columns: 44px 44px 44px; }
+  .stepper button { width: 44px; height: 44px; }
+  .stepper output { height: 44px; }
+  .booking-summary { padding: 24px 20px calc(20px + env(safe-area-inset-bottom)); }
+  .summary-kicker { margin-bottom: 16px; }
+  .summary-route { padding-bottom: 18px; font-size: 22px; }
+  .summary-details { padding: 17px 0; }
+  .key-toggle { padding: 18px 0; }
+  .summary-total { padding: 20px 0; }
+  .summary-total strong { font-size: 34px; }
+  .whatsapp-button { min-height: 58px; }
   .story-image { min-height: 390px; }
   .story-copy { padding: 68px 28px 76px; }
   .rate-row { grid-template-columns: 1fr 72px; padding: 18px 0; }
@@ -198,7 +228,23 @@ footer { background: #111916; color: white; }
   .footer-inner p { grid-column: 1 / -1; grid-row: 2; margin: 0; }
 }
 
+@media (max-width: 390px) {
+  h1 { font-size: 54px; }
+  .language-picker { padding-inline: 8px; }
+  .language-picker select { width: 50px; }
+  .booking-heading h2, .story-copy h2, .rates-layout h2, .ferry-content h2 { font-size: 42px; }
+  .transfer-option { grid-template-columns: 36px minmax(0, 1fr) auto; column-gap: 10px; }
+  .option-icon { width: 34px; height: 34px; }
+  .option-content small { font-size: 12px; }
+  .quantity-control { padding-inline: 10px; }
+  .quantity-label { gap: 7px; font-size: 15px; }
+  .stepper { grid-template-columns: 42px 42px 42px; }
+  .stepper button { width: 42px; height: 42px; }
+  .stepper output { height: 42px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; }
 }
+
