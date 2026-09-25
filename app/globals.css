@@ -249,7 +249,7 @@ footer { background: #111916; color: white; }
 }
 
 /* Friendly travel identity, retaining the serif family of the BT logo. */
-:root { --ink: #203b30; --muted: #41594b; --paper: #bccbbb; --sage: #91a78f; --sage-soft: #aabea5; --gold: #c5d6b9; --line: #8da38e; }
+:root { --ink: #203b30; --muted: #304b38; --paper: #bccbbb; --sage: #91a78f; --sage-soft: #aabea5; --gold: #c5d6b9; --line: #8da38e; }
 body { overflow-x: clip; }
 button, a, input, select { touch-action: manipulation; }
 button:focus-visible, a:focus-visible, .transfer-option:has(input:focus-visible) { outline: 3px solid #237964; outline-offset: 4px; }
@@ -266,7 +266,7 @@ svg { flex-shrink: 0; }
 .hero-content { padding: 44px 0; }
 h1 { max-width: 550px; font-size: 76px; line-height: 1.02; font-weight: 600; }
 .eyebrow { font-size: 14px; text-transform: none; }
-.hero-content .eyebrow { color: #356952; font-size: 19px; font-weight: 600; }
+.hero-content .eyebrow { color: #284b34; font-size: 19px; font-weight: 600; }
 .hero-copy { max-width: 405px; margin: 22px 0 28px; font-size: 21px; line-height: 1.5; }
 .primary-link { min-height: 54px; border-radius: 6px; background: #26705a; border-color: #26705a; padding: 0 24px; font-size: 18px; }
 .primary-link:hover { background: #1d5947; transform: none; }
@@ -275,7 +275,7 @@ h1 { max-width: 550px; font-size: 76px; line-height: 1.02; font-weight: 600; }
 .booking-heading { gap: 48px; margin-bottom: 38px; }
 .booking-heading h2, .story-copy h2, .rates-layout h2, .ferry-content h2 { font-size: 48px; line-height: 1.07; font-weight: 600; }
 .booking-heading > p { font-size: 19px; line-height: 1.5; }
-.eyebrow.dark { color: #356952; margin-bottom: 12px; font-size: 17px; }
+.eyebrow.dark { color: #284b34; margin-bottom: 12px; font-size: 17px; }
 .booking-layout { gap: 36px; grid-template-columns: minmax(0, 1fr) 350px; }
 .booking-main { gap: 32px; }
 legend { font-size: 21px; margin-bottom: 18px; }
@@ -323,7 +323,7 @@ legend span { background: #a5bca2; color: #203b30; border: 0; font-size: 13px; }
 .story-copy ol { margin-top: 30px; gap: 24px; }
 .story-copy li strong { font-size: 22px; }
 .story-copy li p { font-size: 18px; }
-.story-copy li > span { background: #d7e1cf; font-size: 14px; }
+.story-copy li > span { background: #d7e1cf; color: #41533f; font-size: 14px; }
 .rates-section { padding: 76px 0; background: #b6c7b0; }
 .rates-layout { gap: 60px; }
 .rate-row { font-size: 18px; }
@@ -334,7 +334,7 @@ legend span { background: #a5bca2; color: #203b30; border: 0; font-size: 13px; }
 .ferry-overlay { background: linear-gradient(90deg, rgba(181,201,175,.97), rgba(181,201,175,.88) 27%, rgba(181,201,175,0) 68%); }
 .ferry-content { color: var(--ink); padding-block: 64px; }
 .ferry-content h2 { max-width: 430px; }
-.ferry-content .eyebrow { color: #356952; font-size: 17px; }
+.ferry-content .eyebrow { color: #284b34; font-size: 17px; }
 .primary-link.light { color: #fff; background: #26705a; border-color: #26705a; }
 footer { background: #294a38; color: #f3f5eb; }
 .footer-inner { min-height: 130px; }
