@@ -619,7 +619,7 @@ export default function Home() {
   return (
     <main>
       <section className="hero">
-        <Image src="/images/hero-airport.webp" alt={t.heroAlt} fill priority className="hero-image" sizes="100vw" />
+        <Image src="/images/arrival-friendly.webp" alt={t.heroAlt} fill priority className="hero-image" sizes="100vw" />
         <div className="hero-shade" />
         <header className="site-header shell">
           <a className="brand" href="#top" aria-label="BT Concierge">
@@ -645,7 +645,7 @@ export default function Home() {
         </header>
         <div className="hero-content shell" id="top">
           <p className="eyebrow">{t.heroEyebrow}</p>
-          <h1>BT CONCIERGE</h1>
+          <h1>BT Concierge</h1>
           <p className="hero-copy">{t.heroCopy}</p>
           <a className="primary-link" href="#reservar">{t.request} <ArrowDown size={18} /></a>
         </div>
@@ -723,7 +723,7 @@ export default function Home() {
       </section>
 
       <section className="service-story">
-        <div className="story-image"><Image src="/images/city-arrival.webp" alt={t.storyAlt} fill sizes="(max-width: 800px) 100vw, 50vw" /></div>
+        <div className="story-image"><Image src="/images/apartment-welcome.webp" alt={t.storyAlt} fill sizes="(max-width: 960px) 100vw, 50vw" /></div>
         <div className="story-copy">
           <p className="eyebrow dark">{t.storyEyebrow}</p><h2>{t.storyTitle}</h2>
           <ol>
@@ -747,7 +747,7 @@ export default function Home() {
       </section>
 
       <section className="ferry-band">
-        <Image src="/images/ferry-transfer.webp" alt={t.ferryAlt} fill sizes="100vw" />
+        <Image src="/images/ferry-friendly.webp" alt={t.ferryAlt} fill sizes="100vw" />
         <div className="ferry-overlay" />
         <div className="shell ferry-content"><p className="eyebrow">{t.ferryEyebrow}</p><h2>{t.ferryTitle}</h2><a className="primary-link light" href="#reservar">{t.reserveFrom}<ChevronRight size={18} /></a></div>
       </section>
@@ -762,4 +762,3 @@ export default function Home() {
     </main>
   );
 }
-
